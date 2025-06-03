@@ -1,0 +1,87 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.language-switch {
+  position: relative;
+
+  &__trigger {
+    @include flex-center;
+    gap: $spacing-sm;
+    padding: $spacing-sm $spacing-md;
+    background: rgba($white, 0.9);
+    border: 1px solid rgba($gray, 0.2);
+    border-radius: $border-radius-lg;
+    color: $text-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: all $transition-fast;
+    min-width: 100px;
+
+    &:hover {
+      background: rgba($primary-color, 0.05);
+      border-color: rgba($primary-color, 0.3);
+    }
+  }
+
+  &__flag {
+    font-size: $font-size-base;
+  }
+
+  &__name {
+    @include mobile {
+      display: none;
+    }
+  }
+
+  &__icon {
+    font-size: $font-size-xs;
+    color: $text-secondary;
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + $spacing-sm);
+    right: 0;
+    background: $white;
+    border: 1px solid rgba($gray, 0.2);
+    border-radius: $border-radius-lg;
+    box-shadow: $shadow-lg;
+    overflow: hidden;
+    z-index: $z-dropdown;
+    min-width: 120px;
+  }
+
+  &__option {
+    @include flex-center;
+    gap: $spacing-sm;
+    width: 100%;
+    padding: $spacing-md;
+    background: none;
+    border: none;
+    color: $text-primary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    cursor: pointer;
+    transition: all $transition-fast;
+    text-align: left;
+
+    &:hover {
+      background: rgba($primary-color, 0.1);
+    }
+
+    &.active {
+      background: rgba($primary-color, 0.1);
+      color: $primary-color;
+    }
+
+    &-flag {
+      font-size: $font-size-base;
+    }
+
+    &-name {
+      flex: 1;
+    }
+  }
+}
+

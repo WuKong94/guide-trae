@@ -1,0 +1,182 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.travel-guide {
+  min-height: 100vh;
+  padding: 100px 0 60px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 50px;
+
+    .guide-title {
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+
+      @include mobile {
+        font-size: 2.2rem;
+      }
+    }
+
+    .guide-subtitle {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+      font-weight: 400;
+
+      @include mobile {
+        font-size: 1rem;
+        padding: 0 20px;
+      }
+    }
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-bottom: 60px;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+
+  .category-card {
+    background: white;
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .category-icon {
+      font-size: 2.5rem;
+      color: $primary-color;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: $text-dark;
+      margin-bottom: 12px;
+      text-align: center;
+      letter-spacing: -0.01em;
+    }
+
+    .category-description {
+      color: $text-secondary;
+      text-align: center;
+      margin-bottom: 24px;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .category-items {
+      .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #f1f5f9;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .item-name {
+          font-weight: 500;
+          color: $text-dark;
+          font-size: 0.95rem;
+        }
+
+        .item-location {
+          color: $text-secondary;
+          font-size: 0.85rem;
+          background: #f8fafc;
+          padding: 4px 10px;
+          border-radius: 8px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .tips-section {
+    h2 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: white;
+      text-align: center;
+      margin-bottom: 35px;
+      letter-spacing: -0.01em;
+
+      @include mobile {
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+
+  .tip-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: $text-dark;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid $primary-color;
+      letter-spacing: -0.01em;
+    }
+
+    p {
+      color: $text-secondary;
+      line-height: 1.5;
+      margin: 0;
+      font-size: 0.95rem;
+    }
+  }
+}
+

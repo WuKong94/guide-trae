@@ -1,0 +1,141 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba($white, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba($gray, 0.1);
+  z-index: $z-fixed;
+  transition: all $transition-normal;
+
+  &__content {
+    @include flex-between;
+    padding: $spacing-md 0;
+  }
+
+  &__logo {
+    text-decoration: none;
+    
+    &-text {
+      font-size: $font-size-2xl;
+      font-weight: $font-weight-bold;
+      @include gradient-text;
+    }
+  }
+
+  &__nav {
+    &-list {
+      @include flex-center;
+      list-style: none;
+      gap: $spacing-xl;
+    }
+
+    &-item {
+      position: relative;
+    }
+
+    &-link {
+      color: $text-primary;
+      font-weight: $font-weight-medium;
+      text-decoration: none;
+      padding: $spacing-sm 0;
+      position: relative;
+      transition: color $transition-fast;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: $bg-gradient;
+        transition: width $transition-normal;
+      }
+
+      &:hover,
+      &.active {
+        color: $primary-color;
+        
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &__actions {
+    @include flex-center;
+    gap: $spacing-md;
+  }
+
+  &__menu-toggle {
+    @include flex-center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    color: $text-primary;
+    font-size: $font-size-lg;
+    cursor: pointer;
+    border-radius: $border-radius-md;
+    transition: all $transition-fast;
+
+    &:hover {
+      background: rgba($primary-color, 0.1);
+      color: $primary-color;
+    }
+  }
+
+  &__mobile-nav {
+    overflow: hidden;
+    border-top: 1px solid rgba($gray, 0.1);
+    
+    &-list {
+      list-style: none;
+      padding: $spacing-md 0;
+    }
+
+    &-item {
+      margin-bottom: $spacing-sm;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &-link {
+      display: block;
+      color: $text-primary;
+      font-weight: $font-weight-medium;
+      text-decoration: none;
+      padding: $spacing-md;
+      border-radius: $border-radius-lg;
+      transition: all $transition-fast;
+
+      &:hover,
+      &.active {
+        background: rgba($primary-color, 0.1);
+        color: $primary-color;
+      }
+    }
+  }
+
+  // 响应式样式
+  @include mobile {
+    .desktop-nav {
+      display: none;
+    }
+  }
+
+  @include desktop {
+    .mobile-only {
+      display: none;
+    }
+  }
+}
+

@@ -1,0 +1,481 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.home {
+  padding-top: 80px; // Header height offset
+}
+
+// Hero Carousel Section
+.hero-carousel {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  @include flex-center;
+}
+
+.slide-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  transition: transform 0.8s ease;
+  
+  @include mobile {
+    background-attachment: scroll;
+  }
+}
+
+.slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg, 
+    rgba($primary-color, 0.7) 0%, 
+    rgba($accent-color, 0.6) 50%,
+    rgba($secondary-color, 0.7) 100%
+  );
+}
+
+.slide-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: $text-white;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.slide-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.slide-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba($black, 0.3);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  
+  @include tablet {
+    font-size: 2.8rem;
+  }
+  
+  @include mobile {
+    font-size: 2.2rem;
+  }
+}
+
+.slide-subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 40px;
+  opacity: 0.95;
+  line-height: 1.6;
+  font-weight: 400;
+  text-shadow: 1px 1px 4px rgba($black, 0.3);
+  
+  @include tablet {
+    font-size: 1.1rem;
+  }
+  
+  @include mobile {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+}
+
+.slide-actions {
+  @include flex-center;
+  gap: 20px;
+  
+  @include mobile {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+// 导航按钮
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  z-index: 3;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+  }
+  
+  &--prev {
+    left: 30px;
+    
+    @include mobile {
+      left: 20px;
+    }
+  }
+  
+  &--next {
+    right: 30px;
+    
+    @include mobile {
+      right: 20px;
+    }
+  }
+  
+  @include mobile {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+// 指示器
+.carousel-indicators {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 3;
+  
+  @include mobile {
+    bottom: 20px;
+    gap: 8px;
+  }
+}
+
+.carousel-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &.active {
+    background: white;
+    transform: scale(1.2);
+  }
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.8);
+  }
+  
+  @include mobile {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+// Button Styles
+.btn {
+  @include button-base;
+  font-size: 1.1rem;
+  padding: 14px 28px;
+  gap: 8px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &--primary {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+  }
+  
+  &--outline {
+    background: transparent;
+    color: $primary-color;
+    border: 2px solid $primary-color;
+    
+    &:hover {
+      background: $primary-color;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba($primary-color, 0.3);
+    }
+  }
+  
+  @include mobile {
+    font-size: 1rem;
+    padding: 12px 24px;
+  }
+}
+
+// Features Section
+.features {
+  padding: 100px 0;
+  background: $bg-secondary;
+  
+  @include mobile {
+    padding: 60px 0;
+  }
+  
+  &__header {
+    text-align: center;
+    margin-bottom: 60px;
+    
+    @include mobile {
+      margin-bottom: 40px;
+    }
+  }
+  
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+    
+    @include mobile {
+      font-size: 2rem;
+    }
+  }
+  
+  &__subtitle {
+    font-size: 1.2rem;
+    color: $text-secondary;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    
+    @include mobile {
+      font-size: 1rem;
+    }
+  }
+  
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+}
+
+.feature-card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  }
+  
+  &__icon {
+    font-size: 3rem;
+    color: $primary-color;
+    margin-bottom: 20px;
+  }
+  
+  &__title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+  
+  &__description {
+    color: $text-secondary;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+  
+  @include mobile {
+    padding: 30px 20px;
+  }
+}
+
+// Cities Section
+.cities {
+  padding: 100px 0;
+  
+  @include mobile {
+    padding: 60px 0;
+  }
+  
+  &__header {
+    text-align: center;
+    margin-bottom: 60px;
+    
+    @include mobile {
+      margin-bottom: 40px;
+    }
+  }
+  
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+    
+    @include mobile {
+      font-size: 2rem;
+    }
+  }
+  
+  &__subtitle {
+    font-size: 1.2rem;
+    color: $text-secondary;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    
+    @include mobile {
+      font-size: 1rem;
+    }
+  }
+  
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+    
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+  }
+  
+  &__actions {
+    text-align: center;
+  }
+}
+
+.city-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    
+    .city-card__image img {
+      transform: scale(1.05);
+    }
+  }
+  
+  &__image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+  }
+  
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  }
+  
+  &__content {
+    padding: 24px;
+  }
+  
+  &__name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  
+  &__description {
+    color: $text-secondary;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+  }
+  
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: $primary-color;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      gap: 8px;
+    }
+  }
+}
+
