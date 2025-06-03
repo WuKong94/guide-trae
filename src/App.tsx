@@ -13,7 +13,7 @@ import './styles/globals.scss';
 function App() {
   return (
     <LanguageProvider>
-      <Router>
+      <Router basename="/guide-trae">
         <div className="App">
           <Header />
           <main>
